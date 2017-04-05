@@ -1,0 +1,107 @@
+<template>
+    <div id="f9d49f60-a01b-4ec3-a9f3-17edce3e7117" class="content section--large">
+        <form id="hausarztaendern" class="contact-form" method="post" action="" enctype="multipart/form-data">
+            <h2 class="section--xx-large">Ihre persönlichen Angaben zur Identifikation</h2>
+            <div class="section--on-gray section form__inner section--tiny">
+                <div class="section--tiny">
+                    <div class="l-horizontal-padding l-grid-cell l-one-half l-mobile-one-whole section--tiny">
+                        <label for="vorname" class="input-label">Vorname <dfn title="required">*</dfn></label>
+                        <input required="required" name="vorname" id="vorname" class="input--block" value.bind="state.userData.firstname" maxlength="50" type="text">
+                    </div>
+                    <style type="text/css">
+                        .l-one-half {
+                            width: 49.0%;
+                            vertical-align: top;
+                            display: inline-block;
+                            box-sizing: border-box;
+                        }
+                    </style>
+                    <div class="l-horizontal-padding l-grid-cell l-one-half l-mobile-one-whole section--tiny">
+                        <label for="name" class="input-label">Name <dfn title="required">*</dfn></label>
+                        <input required="required" name="name" id="name" class="input--block" value.bind="state.userData.lastname" maxlength="50" type="text">
+                    </div>
+                    <style type="text/css">
+                        .l-one-half {
+                            width: 49.0%;
+                            vertical-align: top;
+                            display: inline-block;
+                            box-sizing: border-box;
+                        }
+                    </style>
+                    <div class="l-horizontal-padding l-grid-cell l-one-half l-mobile-one-whole section--tiny">
+                        <label for="telefonnummer" class="input-label">Telefon <dfn title="required">*</dfn></label>
+                        <input required="required" name="telefonnummer" id="telefonnummer" class="input--block" value.bind="state.userData.phone" maxlength="50" type="text">
+                    </div>
+                    <style type="text/css">
+                        .l-one-half {
+                            width: 49.0%;
+                            vertical-align: top;
+                            display: inline-block;
+                            box-sizing: border-box;
+                        }
+                    </style>
+                    <div class="l-horizontal-padding l-grid-cell l-one-half l-mobile-one-whole section--tiny">
+                        <label for="email" class="input-label">E-Mail <dfn title="required">*</dfn></label>
+                        <input required="required" name="email" id="email" class="input--block" value.bind="state.userData.email" maxlength="50" type="text">
+                    </div>
+                    <style type="text/css">
+                        .l-one-half {
+                            width: 49.0%;
+                            vertical-align: top;
+                            display: inline-block;
+                            box-sizing: border-box;
+                        }
+                    </style>
+                    <div class="l-horizontal-padding l-grid-cell l-one-half l-mobile-one-whole section--tiny">
+                        <label for="kundennummer" class="input-label">Kundennummer</label>
+                        <input name="kundennummer" id="kundennummer" class="input--block" value.bind="state.userData.customernumber" maxlength="50" type="text">
+                    </div>
+                    <style type="text/css">
+                        .l-one-half {
+                            width: 49.0%;
+                            vertical-align: top;
+                            display: inline-block;
+                            box-sizing: border-box;
+                        }
+                    </style>
+                </div>
+            </div>
+            <h2 class="section--xx-large">Neuer Hausarzt</h2>
+            <div class="section--on-gray section form__inner section--tiny">
+                <div class="section--tiny">
+                    <div class="l-horizontal-padding l-grid-cell l-two-thirds l-mobile-one-whole section--tiny" if.bind="(state.userData.doctor != null)">
+                        <label for="hausarztes-read" class="input-label"><span data-18n-id="doctor_name" class="i18n-str">Hausarzt für das HMO- oder Hausarzt-Modell</span></label>
+                        ${state.userData.doctor.title}
+                        ${state.userData.doctor.firstname}
+                        ${state.userData.doctor.lastname},
+                        ${state.userData.doctor.address},
+                        ${state.userData.doctor.zip}
+                        ${state.userData.doctor.city}
+                    </div>
+                    <div class="l-horizontal-padding l-grid-cell l-one-whole l-mobile-one-whole l-grid-cell--spacy-s left section--tiny">
+                        <button click.delegate="router.navigateToRoute('doc-search')" class="button--secondary" style="margin-bottom: 2.5rem">${(state.userData.doctor != null)?"Ändern":"Zur Arztsuche"}</button>
+                    </div>
+                    <div class="l-grid-cell l-one-whole l-mobile-one-whole l-horizontal-padding" id="hiddenstartdate" if.bind="(state.userData.doctor != null)">
+                        <label class="input-label" for="Änderung gültig ab">Änderung gültig ab<dfn title="required">*</dfn></label>
+
+                        <select class="select--transparent next12months" id="changedoctorasof" name="changedoctorasof" required="">
+				<option value="Ab sofort">Gültig ab sofort</option>
+				<option value="01. Mai 2017">01. Mai 2017</option>
+				<option value="01. Juni 2017">01. Juni 2017</option>
+				<option value="01. Juli 2017">01. Juli 2017</option>
+				<option value="01. August 2017">01. August 2017</option>
+				<option value="01. September 2017">01. September 2017</option>
+				<option value="01. Oktober 2017">01. Oktober 2017</option>
+				<option value="01. November 2017">01. November 2017</option>
+				<option value="01. Dezember 2017">01. Dezember 2017</option>
+				<option value="01. Januar 2018">01. Januar 2018</option>
+				<option value="01. Februar 2018">01. Februar 2018</option>
+				<option value="01. März 2018">01. März 2018</option>
+				<option value="01. April 2018">01. April 2018</option>
+			</select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

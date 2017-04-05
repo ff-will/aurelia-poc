@@ -1,0 +1,80 @@
+<template>
+    <div id="findnewdoctor-container" style="">
+        <div class="calculator-content" id="findnewdoctor" style="">
+            <div class="on-gray container">
+                <div class="content section section-bottom--xx-large">
+                    <h2><span data-18n-id="doctor_choice" class="i18n-str">Arztwahl</span></h2>
+                    <div class="section card">
+                        <div class="l-grid l-grid--spacy-s">
+                            <div class="l-grid-cell l-one-fifth l-mobile-one-half l-grid-cell--spacy-s left section--tiny">
+                                <button route-href="route: doc-form" click.delegate="router.navigateToRoute('doc-form')">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section card card--spacy">
+                        <div class="">
+                            <div class="l-grid-cell l-two-thirds l-mobile-one-whole l-grid-cell--spacy-s l-horizontal-padding">
+                                <label for="hausarztes" class="input-label"><span data-18n-id="doctor_name" class="i18n-str">Name des Hausarztes</span></label>
+                                <input id="hausarztes" class="input--block" name="hausarztes" placeholder="Vor- oder Nachname des Arzts" style="margin-bottom: 1.25rem"
+                                    type="text" value.bind="searchDocName">
+                            </div>
+
+                            <!--            <div class="l-grid-cell l-one-third l-mobile-one-whole l-grid-cell--spacy-s l-horizontal-padding">
+                <label for="plz" class="input-label"><span data-18n-id="zip" class="i18n-str">PLZ</span></label>
+                <input id="plz" class="input--block" name="plz" style="margin-bottom: 1.25rem" type="text">
+            </div>
+-->
+                            <!--            <div class="l-grid-cell l-one-third l-mobile-one-half l-grid-cell--spacy-s l-horizontal-padding">
+                <label for="umkreis_von" class="input-label"><span data-18n-id="radius_of" class="i18n-str">Im Umkreis von</span></label>
+                <select id="umkreis_von" class="input--block" name="umkreis_von" style="margin-bottom: 1.25rem">
+							<option value="5">5 km</option>
+							<option value="10">10 km</option>
+							<option value="20">20 km</option>
+						</select>
+            </div>
+-->
+                            <div class="l-grid-cell l-one-third l-mobile-one-half l-grid-cell--spacy-s l-horizontal-padding">
+                                <label for="hmo-choice" class="input-label"><span data-18n-id="radius_of" class="i18n-str">Modell</span></label>
+                                <select id="hmo-choice" class="input--block" name="hmo-choice" style="margin-bottom: 1.25rem" value.bind="searchDocType">
+						<option value="">Alle</option>
+						<option value="hmo">casamed HMO</option>
+						<option value="casamed">casamed Hausarzt</option>
+					</select>
+                            </div>
+                            <div class="l-grid-cell l-one-third l-mobile-one-whole l-grid-cell--spacy-s right section--tiny l-horizontal-padding">
+                                <input value="Suchen" class="button--secondary" click.delegate="filterDoctors()" disabled.bind="isRequesting" type="button">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section--tiny card card--spacy" id="withdoctorresults" style="" if.bind="(!isRequesting && filteredDoctors != null && filteredDoctors.length > 0)">
+                        <table class="no-side-spacing table-collapse-mobile" id="doctortable">
+                            <thead>
+                                <tr>
+                                    <th><span data-18n-id="firstname_lastname_comma" class="i18n-str">Nach-, Vornamen</span></th>
+                                    <th colspan="2"><span data-18n-id="zip_residence" class="i18n-str">PLZ / Wohnort</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr repeat.for="doctor of filteredDoctors">
+                                    <td>
+                                        <div>
+                                            <div><strong>${doctor.lastname}</strong>, ${doctor.firstname}</div>
+                                            <div class="t-footnote c-gray3">${doctor.speciality}</div>
+                                        </div>
+                                    </td>
+                                    <td>${doctor.zip} ${doctor.city}</td>
+                                    <td class="right--not-mobile section-bottom">
+                                        <input click.delegate="selectDoctor(doctor)"
+                                            value="Wählen" class="button" type="button"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="section--tiny card card--spacy" id="nodoctorresults" style="" if.bind="(!isRequesting && filteredDoctors != null && filteredDoctors.length == 0)">
+                        <h3><span data-18n-id="no_results" class="i18n-str">Keine Ergebnisse...</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

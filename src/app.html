@@ -1,0 +1,7 @@
+<template>
+  <require from="./components/doc-search/doc-search"></require>
+  <require from="./styles/progressbar.css"></require>
+  <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+
+  <router-view></router-view>
+</template>
